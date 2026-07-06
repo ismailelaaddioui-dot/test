@@ -1,4 +1,4 @@
-"""Enable `python -m email_extractor`."""
+"""Enable `python -m lead_finder`."""
 
 import sys
 
