@@ -19,6 +19,7 @@ class DorkQuery:
     company: str
     lane: str
     country: str
+    company_site: str = ""
     source_method: str = "linkedin-dork"
 
 
@@ -37,6 +38,7 @@ def build_query(company: Company, max_titles: int | None = None) -> DorkQuery:
         company=company.name,
         lane=company.lane,
         country=company.country,
+        company_site=company.site,
     )
 
 

@@ -8,6 +8,7 @@ TRACKER_FIELDS = [
     "name",
     "title",
     "company",
+    "company_site",    # full https:// URL to the company/agency site
     "lane",            # 1A / 1B / 1C / 2 / 3
     "country",
     "source_method",   # how the contact was discovered
@@ -31,6 +32,7 @@ class Contact:
     title: str
     company: str
     lane: str
+    company_site: str = ""
     country: str = ""
     source_method: str = ""
     email: str = ""

@@ -96,7 +96,7 @@ def test_parse_excludes_moroccan_client():
 def test_csv_has_header_and_rows():
     contacts = [Contact(name="A", title="Producer", company="X", lane="1A")]
     csv_text = to_csv(contacts)
-    assert csv_text.splitlines()[0].startswith("name,title,company,lane,country")
+    assert csv_text.splitlines()[0].startswith("name,title,company,company_site,lane,country")
     assert "Producer" in csv_text
 
 
