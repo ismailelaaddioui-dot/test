@@ -26,7 +26,7 @@ def test_titles_for_lane():
 def test_build_query_shape():
     c = Company("Raccoon London", "1A", "UK")
     dork = build_query(c, max_titles=2)
-    assert dork.query.startswith("site:linkedin.com/in (")
+    assert dork.query.startswith("site:linkedin.com (")
     assert '"Raccoon London"' in dork.query
     assert " OR " in dork.query
     assert dork.lane == "1A"

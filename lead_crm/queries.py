@@ -1,7 +1,12 @@
 """Generate lane-tagged LinkedIn dork queries from the target config.
 
-Query shape (per the discovery brief):
-    site:linkedin.com/in ("TITLE1" OR "TITLE2" OR ...) "COMPANY"
+Query shape:
+    site:linkedin.com ("TITLE1" OR "TITLE2" OR ...) "COMPANY"
+
+Note: we use the broad `site:linkedin.com` form (not `site:linkedin.com/in`)
+because Google returns more matches for it — the `/in` path filter narrows
+results too aggressively. Quality is preserved downstream: `parse` keeps only
+real `/in/` profile URLs, so the extra surface just means more candidates in.
 
 Each generated item carries its lane and company so results can be tagged
 without re-parsing. Titles are OR-grouped per company to keep the number of
@@ -32,7 +37,7 @@ def build_query(company: Company, max_titles: int | None = None) -> DorkQuery:
     titles = titles_for_lane(company.lane)
     if max_titles:
         titles = titles[:max_titles]
-    q = f'site:linkedin.com/in ({_or_group(titles)}) "{company.name}"'
+    q = f'site:linkedin.com ({_or_group(titles)}) "{company.name}"'
     return DorkQuery(
         query=q,
         company=company.name,
